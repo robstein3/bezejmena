@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Bezejména – Prémiový design domů a bytů</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #111;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        .nav a:hover {
+            color: #000;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 4vw, 3.2rem);
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        .hero-tag {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            color: #777;
+            margin-bottom: 0.75rem;
+        }
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .btn-primary, .btn-secondary {
+            border-radius: 999px;
+            padding: 0.7rem 1.6rem;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #111;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #000;
+        }
+        .btn-secondary {
+            background: transparent;
+            border-color: #ccc;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            border-color: #111;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+        .hero-main-img {
+            width: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+        }
+        .hero-badge {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255,255,255,0.92);
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        .section-header h2 {
+            font-size: 1.6rem;
+        }
+        .section-header p {
+            font-size: 0.9rem;
+            color: #666;
+            max-width: 420px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.4rem;
+            border: 1px solid #eee;
+        }
+        .card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .portfolio-label {
+            position: absolute;
+            left: 0.9rem;
+            bottom: 0.9rem;
+            background: rgba(0,0,0,0.65);
+            color: #fff;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 2.5rem;
+            align-items: start;
+        }
+        form {
+            background: #fff;
+            border-radius: 18px;
+            padding: 1.8rem;
+            border: 1px solid #eee;
+        }
+        form .field {
+            margin-bottom: 1rem;
+        }
+        form label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            color: #444;
+        }
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 0.6rem 0.7rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+        form input:focus, form textarea:focus, form select:focus {
+            outline: none;
+            border-color: #111;
+        }
+        form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-note {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            border-top: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        @media (max-width: 900px) {
+            .hero, .contact-wrapper {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .hero {
+                padding-top: 3rem;
+            }
+            .portfolio-grid, .grid-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 640px) {
+            .portfolio-grid, .grid-3 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .nav a {
+                margin-left: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">Bezejména</div>
+        <nav>
+            <a href="#sluzby">Služby</a>
+            <a href="#projekty">Projekty</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div>
+        <div class="hero-tag">Prémiový interiérový design</div>
+        <h1>Navrhujeme domovy, ve kterých se chcete zdržet déle.</h1>
+        <p>
+            Bezejména je mladé studio zaměřené na nadčasový design domů a bytů.
+            Spojujeme čisté linie, kvalitní materiály a funkčnost, aby každý detail dával smysl.
+        </p>
+        <div class="hero-cta">
+            <a href="#kontakt" class="btn-primary">Domluvte si konzultaci</a>
+            <a href="#projekty" class="btn-secondary">Prohlédnout projekty</a>
+        </div>
+    </div>
+    <div class="hero-image-wrapper">
+        <!-- Ilustrační obrázek z internetu (unsplash) -->
+        <img class="hero-main-img"
+             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL3QVH-i_4k7ynqoGqkUAC9-bpC3egZ_2O8g&s"
+             alt="Moderní interiér obývacího pokoje">
+        <div class="hero-badge">
+            <strong>Nové studio, prémiový přístup.</strong><br>
+            Individuální návrhy pro byty, domy i rekonstrukce.
+        </div>
+    </div>
+</section>
+
+<section id="sluzby" class="section">
+    <div class="section-header">
+        <h2>Co pro vás umíme</h2>
+        <p>
+            Od prvního náčrtu po poslední dekor. Vnímáme prostor jako celek – světlo, materiály,
+            proporce i to, jak se v něm budete cítit každý den.
+        </p>
+    </div>
+    <div class="grid-3">
+        <div class="card">
+            <h3>Návrh interiéru na míru</h3>
+            <p>Kompletní koncept pro váš byt či dům včetně dispozičního řešení, materiálů a barev.</p>
+        </div>
+        <div class="card">
+            <h3>Rekonstrukce & redesign</h3>
+            <p>Citlivé proměny starších prostor, které respektují charakter domu a přidávají současnost.</p>
+        </div>
+        <div class="card">
+            <h3>Autorský dozor</h3>
+            <p>Spolupráce s řemeslníky, kontrola provedení a doladění detailů přímo na stavbě.</p>
+        </div>
+    </div>
+</section>
+
+<section id="projekty" class="section">
+    <div class="section-header">
+        <h2>Vybrané realizace</h2>
+        <p>
+            Každý projekt je jiný, ale všechny spojuje důraz na klid, světlo a kvalitní materiály.
+            Tady je malá ochutnávka.
+        </p>
+    </div>
+    <div class="portfolio-grid">
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=900&q=80"
+                 alt="Minimalistický obývací pokoj">
+            <div class="portfolio-label">Městský byt • 85 m²</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREb5BvYGk2RltBdTOUnpeaPPTw9Yw4kgf_Ag&s"
+                 alt="Moderní kuchyně">
+            <div class="portfolio-label">Kuchyně na míru</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=80"
+                 alt="Ložnice v přírodních tónech">
+            <div class="portfolio-label">Ložnice v přírodních tónech</div>
+        </div>
+    </div>
+</section>
+
+<section id="kontakt" class="section">
+    <div class="section-header">
+        <h2>Řekněte nám o svém prostoru</h2>
+        <p>
+            Napište pár vět o tom, co řešíte. Ozveme se vám s návrhem dalšího postupu
+            a možností úvodní konzultace.
+        </p>
+    </div>
+
+    <div class="contact-wrapper">
+        <form action="#" method="post">
+            <div class="field">
+                <label for="name">Jméno a příjmení</label>
+                <input type="text" id="name" name="name" placeholder="Jana Nováková" required>
+            </div>
+            <div class="field">
+                <label for="email">E‑mail</label>
+                <input type="email" id="email" name="email" placeholder="jana@example.com" required>
+            </div>
+            <div class="field">
+                <label for="type">Typ projektu</label>
+                <select id="type" name="type">
+                    <option value="">Vyberte…</option>
+                    <option value="byt">Byt</option>
+                    <option value="dum">Rodinný dům</option>
+                    <option value="rekonstrukce">Rekonstrukce</option>
+                    <option value="jine">Jiné</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="budget">Přibližný rozpočet</label>
+                <input type="text" id="budget" name="budget" placeholder="např. 500 000 Kč">
+            </div>
+            <div class="field">
+                <label for="message">Popište stručně svůj záměr</label>
+                <textarea id="message" name="message" placeholder="Jaký prostor řešíte, kde se nachází a co je pro vás nejdůležitější…"></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Odeslat poptávku</button>
+            <div class="contact-note">
+                Odesláním formuláře souhlasíte s tím, že vás kontaktujeme zpět ohledně vašeho projektu.
+            </div>
+        </form>
+
+        <div>
+            <h3>Kontakt</h3>
+            <p style="margin-top:0.6rem; font-size:0.9rem; color:#555;">
+                Studio Bezejména<br>
+                Praha - Vodičkova 20
+            </p>
+            <p style="margin-top:0.8rem; font-size:0.9rem;">
+                E‑mail: <a href="mailto:studio@bezejmena.cz">studio@bezejmena.cz</a><br>
+                Instagram: <a href="#">@bezejmena.design</a>
+            </p>
+            <p style="margin-top:1.2rem; font-size:0.9rem; color:#666;">
+                První krátká konzultace je nezávazná – projdeme si vaše zadání a řekneme si,
+                jestli jsme pro sebe ti praví.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © <span id="year"></span> Bezejména – studio interiérového designu.
+</footer>
+
+<script>
+    // Aktuální rok ve footeru
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
