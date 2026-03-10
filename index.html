@@ -360,38 +360,41 @@
     </div>
 
     <div class="contact-wrapper">
-        <form action="#" method="post">
-            <div class="field">
-                <label for="name">Jméno a příjmení</label>
-                <input type="text" id="name" name="name" placeholder="Jana Nováková" required>
-            </div>
-            <div class="field">
-                <label for="email">E‑mail</label>
-                <input type="email" id="email" name="email" placeholder="jana@example.com" required>
-            </div>
-            <div class="field">
-                <label for="type">Typ projektu</label>
-                <select id="type" name="type">
-                    <option value="">Vyberte…</option>
-                    <option value="byt">Byt</option>
-                    <option value="dum">Rodinný dům</option>
-                    <option value="rekonstrukce">Rekonstrukce</option>
-                    <option value="jine">Jiné</option>
-                </select>
-            </div>
-            <div class="field">
-                <label for="budget">Přibližný rozpočet</label>
-                <input type="text" id="budget" name="budget" placeholder="např. 500 000 Kč">
-            </div>
-            <div class="field">
-                <label for="message">Popište stručně svůj záměr</label>
-                <textarea id="message" name="message" placeholder="Jaký prostor řešíte, kde se nachází a co je pro vás nejdůležitější…"></textarea>
-            </div>
-            <button type="submit" class="btn-primary">Odeslat poptávku</button>
-            <div class="contact-note">
-                Odesláním formuláře souhlasíte s tím, že vás kontaktujeme zpět ohledně vašeho projektu.
-            </div>
-        </form>
+        <form name="kontakt" method="POST" data-netlify="true">
+    <div class="field">
+        <label for="name">Jméno a příjmení</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="field">
+        <label for="email">E‑mail</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="field">
+        <label for="type">Typ projektu</label>
+        <select id="type" name="type">
+            <option value="">Vyberte…</option>
+            <option value="byt">Byt</option>
+            <option value="dum">Rodinný dům</option>
+            <option value="rekonstrukce">Rekonstrukce</option>
+            <option value="jine">Jiné</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label for="budget">Přibližný rozpočet</label>
+        <input type="text" id="budget" name="budget">
+    </div>
+
+    <div class="field">
+        <label for="message">Popište stručně svůj záměr</label>
+        <textarea id="message" name="message"></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary">Odeslat poptávku</button>
+</form>
+
 
         <div>
             <h3>Kontakt</h3>
@@ -421,4 +424,5 @@
 
 </body>
 </html>
+
 
